@@ -1,0 +1,200 @@
+<!--pages/details/index.wxml-->
+<view class='main'>
+	<navBar back="{{false}}" home="{{false}}" catchtap="handlerGobackClick">
+		<view slot="left" class="nav_text">
+			<image src="../images/left.png" /><text>任务详情</text></view>
+	</navBar>
+	<!-- 任务详情 -->
+	<view class="details_top">
+		<view class="details_title">
+			<text>{{title}}</text>
+			<text class="note">{{currentId?currentId==0?"待确认":currentId==1?"待完成":currentId==2?"已完成":currentId==3?"已取消":"":"进行中"}}</text>
+		</view>
+		<view class="details_price">
+			<view class="details_price_lift">
+				<text class="task_price">500</text>
+				<text class="task_price_txt">元/天</text>
+			</view>
+			<text class="note">一天前发布</text>
+		</view>
+		<view class="details_collect">
+			<view class="details_collect_lift">
+				<view>
+					<image src="../images/riqi.png" />
+					<text class="note">2019/10/03</text><text class="note">- 2019/10/06 </text><text class="note"> 三天</text>
+				</view>
+				<view>
+					<image src="../images/renshu.png" />
+					<text class="note">剩余三人可抢</text>
+				</view>
+			</view>
+			<view class="details_collect_right" catchtap="collect">
+				<image src="{{collect?'../images/shoucang1.png':'../images/unsc.png'}}" />
+			</view>
+		</view>
+	</view>
+	<!-- 地图 -->
+	<view class="details_map">
+		<map class="map_top" latitude="{{latitude}}" longitude="{{longitude}}"></map>
+		<view class="map_address">
+			<view class="map_left">
+				<view class="map_txt">上海长宁区延安西路1088号长峰中心1F</view>
+				<view class="note">2.3km </view>
+			</view>
+			<view class="map_right" catchtap="map">
+				<image src="../images/right-1.png" />
+			</view>
+		</view>
+	</view>
+	<!-- 任务描述 -->
+	<view class="details_description">
+		<view class="description_top">
+			<view class="left"></view>
+			<view class="title">任务描述</view>
+		</view>
+		<view class="description_content">
+			<view class="task_conditions">
+				<text class="task_condition">长宁区</text>
+				<text class="task_condition">165cm以上</text>
+				<text class="task_condition">20-25岁</text>
+				<text class="task_condition">男女不限</text>
+			</view>
+			<view class="description_title">长期招募成人声乐老师 </view>
+			<view class="description_image">
+				<image src="../images/music_03.png" />
+			</view>
+			<!--招募条件  -->
+			<view class="description_rc">
+				<view>招募条件</view>
+				<view>1、20-25岁，男女不限；</view>
+				<view>2、知名音乐学院声乐专业毕业；</view>
+				<view>3、有任教经验者优先。</view>
+			</view>
+			<!-- 任务内容 -->
+			<view class="description_tc">
+				<view>任务内容</view>
+				<view>1、20-25岁，男女不限；</view>
+				<view>2、知名音乐学院声乐专业毕业；</view>
+				<view>3、有任教经验者优先。</view>
+				<view hidden='{{description_block}}'>4、有任教经验者优先。</view>
+			</view>
+			<!--展开/收起  -->
+			<view class="description_block" catchtap="description_block">
+				<text class="note">{{description_block?"展开":"收起"}}</text>
+				<image src="{{description_block?'../images/arrow-down.png':'../images/arrow-up.png'}}" />
+			</view>
+		</view>
+		<!-- 联系方式 -->
+		<view class="description_ci">
+			<view class="ci_top">
+				<view class="left"></view>
+				<view class="title">联系方式</view>
+			</view>
+			<!-- 联系方式 -->
+			<view class="ci_content">
+				<!-- 联系方式 -->
+				<view class="ci_content_top">
+					<view class="ci_content_top_left">
+						<image src="../images/icon-2.png" />
+					</view>
+					<view class="ci_content_top_center">
+						<text>王先生</text>
+						<view class="tel">
+							<image src="../images/shoujihao.png" /> 18*******82 </view>
+					</view>
+					<view class='ci_content_top_right {{currentId?"citrue":"cifalse"}}' catchtap="description_ci">{{currentId?"联系TA":"接单查看联系方式"}}</view>
+				</view>
+				<!-- 留言 -->
+				<view class="ci_content_bottom">
+					<view class="ci_content_bottom_top">留言·3</view>
+					<view class="ci_content_bottom_bottom">
+						<view class="ci_content_bottom_lm">
+							<view>
+								<image src="../images/wen.png" /> 请问每次上课时间是多久？</view>
+							<view>
+								<image src="../images/da.png" /> 常规每个课时是一个半小时左右。</view>
+						</view>
+						<view class="ci_content_bottom_lm">
+							<view>
+								<image src="../images/wen.png" /> 请问每次上课时间是多久？</view>
+							<view>
+								<image src="../images/da.png" /> 常规每个课时是一个半小时左右。</view>
+						</view>
+						<view class="ci_content_bottom_lm">
+							<view>
+								<image src="../images/wen.png" /> 请问每次上课时间是多久？</view>
+							<view>
+								<image src="../images/da.png" /> 常规每个课时是一个半小时左右。</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+
+
+	<view class="bottom_btn" wx:if="{{currentId == 0}}">
+		<!-- <block wx:if="{{private}}">
+			<view class="bottom_btn_private_left" catchtap="bottom_btn_lm"><image src="../images/msg.png" />留言</view>
+			<view class="bottom_btn_private_right" catchtap="">拒绝</view>
+			<view class="bottom_btn_private_right" catchtap="">接受</view>
+		</block> -->
+		<!-- <block wx:else> -->
+		<view class="bottom_btn_left" catchtap="bottom_btn_lm">
+			<image src="../images/msg.png" />留言</view>
+		<view class='bottom_btn_right orders confirm' catchtap="bottom_btn_confirmation">
+			<view class='bottom_btn_right_head'>等待确认</view>
+			<view class='bottom_btn_right_foot'>(点击取消接单)</view>
+		</view>
+		<!-- </block> -->
+	</view>
+	<view class="bottom_btn" wx:elif="{{currentId == 1}}">
+		<block wx:if="{{leave_Can}}">
+			<view class="bottom_btn_left orders" catchtap="bottom_btn_leave">我要请假</view>
+			<view class='bottom_btn_right timing' catchtap="taskVoucher">
+				<image src="../images/shijian.png" />等待任务完成</view>
+		</block>
+		<block wx:else>
+			<view class="bottom_btn_left bgc" catchtap="bottom_btn_leave">我要请假</view>
+			<view class='bottom_btn_right timing' catchtap="taskVoucher">
+				<image src="../images/shijian.png" />等待任务完成</view>
+		</block>
+	</view>
+	<view class="bottom_btn" wx:elif="{{currentId == 2}}">
+		<view class='bottom_btn_complete' catchtap="bottom_btn_confirm">
+			<image src="../images/wancheng.png" />任务已完成</view>
+	</view>
+	<view class="bottom_btn" wx:else>
+		<view class="bottom_btn_left" catchtap="bottom_btn_lm">
+			<image src="../images/msg.png" />留言</view>
+		<view class='bottom_btn_right {{bottom_btn_flag?"orders":"timing left_border"}}' catchtap="bottom_btn_confirm">
+			<image hidden="{{bottom_btn_flag}}" src="../images/shijian.png" />{{bottom_btn_flag?"立即接单":"等待任务完成"}}</view>
+	</view>
+
+
+
+
+
+	<!-- 留言输入框 -->
+	<view class="details_input" wx:if="{{bottom_btn_lm}}">
+		<view>
+			<image src="../images/msg.png" />
+		</view>
+		<input type="text" focus="{{bottom_btn_lm}}" bindinput="bindKeyInput" />
+		<view class="details_publish" catchtap="details_publish">发表</view>
+	</view>
+	<!-- 首次接单协议 -->
+	<view class="first_order_agreement" hidden="{{!order_agreement_btn_flag}}">
+		<view class="order_agreement_content">
+			<view class="order_agreement_title">鼎助众赢平台接单协议</view>
+			<view class="order_agreement_txt">发表,发表,发表,发表,发表,发表,发表,发表,发表,发表,发表,发表,发表,发表,发表,发表,发表,发表,发表,发表,发表,发表,发表,发表</view>
+			<view class="order_agreement_btn">
+				<view class="order_agreement_btn_left" catchtap="order_agreement_btn_left">不同意</view>
+				<view class="order_agreement_btn_right" catchtap="order_agreement_btn_right">同意</view>
+			</view>
+		</view>
+		<view class="mask" bindtap="hidebg"></view>
+	</view>
+
+</view>

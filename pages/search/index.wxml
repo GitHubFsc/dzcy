@@ -1,0 +1,16 @@
+<!--pages/search/index.wxml-->
+<view class='main-wraper'>
+	<navBar back="{{false}}" home="{{false}}" catchtap="handlerGobackClick">
+		<view slot="left" class="nav_text">
+			<image src="../images/left.png" />
+			<text>搜索</text>
+		</view>
+	</navBar>
+	<view class='search'>
+		<view class='searchItem'>
+			<image src='../images/search_02.png' />
+			<input bindinput="bindKeyInput" placeholder="搜索任务/关键词"></input>
+		</view>
+		<view class="main_right" catchtap="search">搜索</view>
+	</view>
+</view>

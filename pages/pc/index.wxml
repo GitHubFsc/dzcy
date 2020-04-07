@@ -1,0 +1,5 @@
+<!--index.wxml-->
+<navBar back="{{false}}" home="{{false}}" ><view slot="left" class="nav_text">个人中心</view></navBar>
+<view class="container">
+  个人中心
+</view>

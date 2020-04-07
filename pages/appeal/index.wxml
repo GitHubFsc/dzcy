@@ -1,0 +1,9 @@
+<!--pages/appeal/index.wxml-->
+<view class='main-wraper'>
+	<navBar back="{{true}}" home="{{false}}" catchtap="handlerGobackClick"></navBar>
+	<view class='appeal'>
+		<view class="top"><view>申诉</view><view catchtap="save"><image src="../images/save.png" /></view></view>
+		<view class="textarea"><textarea auto-focus="true" auto-height placeholder="等待输入内容" bindblur="bindTextAreaBlur"/></view>
+    <view class="wordCount">{{inputValue.length?inputValue.length:"0"}}/100</view>
+	</view>
+</view>

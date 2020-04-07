@@ -1,0 +1,121 @@
+<!--index.wxml-->
+<view class="container">
+	<navBar back="{{false}}" home="{{false}}">
+		<view slot="left" class="nav_text">鼎助众赢</view>
+	</navBar>
+	<!-- 导航 -->
+	<view class="nav_top">
+		<view class="nav_tab">
+			<view class="nav_name {{item.typeId == currentId ? 'nav_active':''}}" wx:for="{{section1}}" wx:key="index" id='{{item.typeId}}' catchtap='handleTap'>
+				{{item.name}}
+				<view class="{{item.typeId == currentId ? 'nav_border':''}}"></view>
+			</view>
+		</view>
+		<!-- 搜索 -->
+		<view class="nav_search" catchtap="search">
+			<image src="../images/search.png"></image>
+		</view>
+	</view>
+	<!-- 推荐 -->
+	<view hidden='{{currentId!=0}}' class="recommend">
+		<!-- 轮播图 -->
+		<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+			<block wx:for="{{imgUrls}}" wx:key="index">
+				<swiper-item>
+					<image src="{{item}}" class="slide-image" />
+				</swiper-item>
+			</block>
+		</swiper>
+		<!-- 热门推荐 -->
+		<view class="nav_rmrw">
+			<view class="rmtw_content">
+				<view class="rmtw_content_top">
+					<text class="top_left">热门任务</text><text class="top_right" catchtap="more">查看更多</text>
+				</view>	
+				<view class="rmtw_content_task" wx:for="{{arr}}" wx:key="index" data-title="{{item.title}}" catchtap="details">
+					<image class="task_img" src="{{item.imgUrls}}" />
+					<view class="task_content">
+						<view class="task_title">{{item.title}}</view>
+						<view class="task_conditions">
+							<text class="task_condition" wx:for="{{item.condition}}" wx:key="index">{{item}}</text>
+						</view>
+					</view>
+					<view class="task_right">
+						<text class="task_price_txt">{{item.price.unit_type}}</text>
+						<text class="task_price">{{item.price.price}}</text>
+						<text class="task_price_txt">/{{item.price.unit}}</text>
+					</view>
+				</view>
+			</view>
+			<image class="rmtw_left" src="../images/shiyongleft.png"></image>
+			<image class="rmtw_right" src="../images/shiyongright.png"></image>
+		</view>
+	</view>
+	<!-- 筛选 -->
+	<view class="section">
+		<view class="section_nav">
+			<view class="section_title {{item.typeId == sectionId ? 'section_active':''}}" id='{{item.typeId}}' catchtap="section" wx:for="{{section2}}" wx:key="index">{{item.name}}
+				<image wx:if="{{item.name != '离我最近'}}" src="{{item.typeId == sectionId ? '../images/open-01.png' : '../images/bot.png'}}" />
+			</view>
+		</view>
+		<!-- 任务类型 -->
+		<view class="section_block task_type clearfix" style='display:{{sectionId==0?"block":"none"}}'>
+			<view class="task_type_left">
+				<view class="{{task_type1 == index ? 'task_type_left_active': ''}}" wx:for='{{task_type}}' wx:key="index" data-city='{{index}}' bindtap="task_type_left">{{index}}</view>
+			</view>
+			<view class="task_type_right">
+				<view class="{{task_type2 == item ? 'task_type_right_active': ''}}" wx:for='{{task_type_right_list}}' wx:key="index" data-city='{{index}}' bindtap="task_type_right">{{item}}</view>
+			</view>
+		</view>
+		<!-- 地区 -->
+		<view class="section_block area clearfix" bindtap="" style='display:{{sectionId==1?"block":"none"}}'>
+			<view class="area_left">
+				<view class="{{area1 == index ? 'area_left_active': ''}}" wx:for='{{task_type}}' wx:key="index" data-city='{{index}}' bindtap="area_left">{{index}}</view>
+			</view>
+			<view class="area_right">
+				<view class="{{area2 == item ? 'area_right_active': ''}}" wx:for='{{area_right_list}}' wx:key="index" data-city='{{index}}' bindtap="area_right">{{item}}</view>
+			</view>
+		</view>
+		<!-- 筛选 -->
+		<view class="section_block filter" bindtap="" style='display:{{sectionId==3?"block":"none"}}'>
+			<view class="filter_content">
+				<view class="filter_contents" wx:for='{{filter_list}}' wx:key="index">
+					<view class="filter_top">{{item.title}}</view>
+					<view class="filter_bot clearfix">
+						<button class="btn {{items.selected ? 'btn-selected' : ''}}" data-index="{{item.index}}" wx:for='{{item.list}}' wx:for-item="items" wx:key="index" data-idx="{{index}}" bindtap="filter_bot" data-value="{{items.value}}" checked="{{items.selected}}">
+							{{items.value}}
+						</button>
+					</view>
+				</view>
+			</view>
+			<view class='form_btn'>
+				<view class='btn reset' bindtap='quyuEmpty'>重置</view>
+				<view class='btn submit' bindtap='submitFilter'>确定</view>
+			</view>
+		</view>
+	</view>
+	<view class="mask {{sectionId && sectionId !=2?'fullopacity':''}}" bindtap="hidebg"></view>
+	<!-- 任务 -->
+	<view class="Task">
+		<view class="task" wx:for="{{arr}}" wx:key="index" data-title="{{item.title}}" catchtap="details">
+			<image class="task_img" src="{{item.imgUrls}}" />
+			<view class="task_content">
+				<view class="task_title">{{item.title}}</view>
+				<view class="task_time">
+					<text>{{item.time.start}} </text>
+					<text>{{item.time.end}}</text>
+					<text>/{{item.time.total}}</text>
+				</view>
+				<view class="task_conditions">
+					<text class="task_condition" wx:for="{{item.condition}}" wx:key="index">{{item}}</text>
+				</view>
+			</view>
+			<view class="task_right">
+				<view class="task_process">{{item.process?"进行中":"已结束"}}</view>
+				<text class="task_price_txt">{{item.price.unit_type}}</text>
+				<text class="task_price">{{item.price.price}}</text>
+				<text class="task_price_txt">/{{item.price.unit}}</text>
+			</view>
+		</view>
+	</view>
+</view>

@@ -1,0 +1,24 @@
+<!--pages/takeLeave/index.wxml-->
+<view class='main-wraper'>
+	<navBar back="{{true}}" home="{{false}}" catchtap="handlerGobackClick"></navBar>
+	<view class='taskVoucher'>
+		<view class="top">
+			<view>上传任务凭证</view>
+			<view catchtap="save">
+				<image src="../images/save.png" />
+			</view>
+		</view>
+		<view class="position">
+      <view class="position_top">位置定位</view>
+      <view class="position_bottom"><image mode="widthFix" src="../images/add-wz.png"/>点击选择位置</view>
+    </view>
+    <view class="file">
+      <view class="task_txt">任务照片</view>
+      <view class="task_file">
+      <image src="../images/add1.png" data-index ="0" catchtap="chooseImage"/>
+      <image src="../images/add1.png" data-index ="1" catchtap="chooseImage"/>
+      <image src="../images/add1.png" data-index ="2" catchtap="chooseImage"/>
+      </view>
+    </view>
+	</view>
+</view>

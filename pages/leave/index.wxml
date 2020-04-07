@@ -1,0 +1,26 @@
+<!--pages/leave/index.wxml-->
+<view class='main-wraper'>
+	<navBar back="{{true}}" home="{{false}}" catchtap="handlerGobackClick"></navBar>
+	<view class='appeal'>
+		<view class="top">
+			<view>请假</view>
+			<view catchtap="save">
+				<image src="../images/save.png" />
+			</view>
+		</view>
+		<view class="textarea"><textarea auto-focus="true" auto-height placeholder="说明请假的原由" bindblur="bindTextAreaBlur" /></view>
+    <view class="file">
+      <block wx:for="{{files}}" wx:key="*this">
+        <view data-index="{{index}}" bindtap="previewImage"><image  data-index="{{index}}" src="{{item}}"/></view>
+      </block>
+      <view catchtap="chooseImage"><image src="../images/add1.png"/></view>
+    </view>
+    <!-- 图片预览层 -->
+    <!-- <view class="preview" hidden="{{!previewImage}}">
+      <block wx:for="{{files}}" wx:key="*this">
+        <view data-idx="{{index}}" bindtap="previewImage"><image mode="widthFix" src="{{item}}"/></view>
+      </block>
+      <view>删除</view>
+    </view> -->
+	</view>
+</view>

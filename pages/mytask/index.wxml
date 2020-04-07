@@ -1,0 +1,42 @@
+<!--index.wxml-->
+<view class="container">
+	<navBar back="{{false}}" home="{{false}}">
+		<view slot="left" class="nav_text">我的任务</view>
+	</navBar>
+	<!-- 导航 -->
+	<view class="nav_top">
+		<view class="nav_tab">
+			<view class="nav_name {{item.typeId == currentId ? 'nav_hover':''}}" wx:for="{{section1}}" wx:key="index" id='{{item.typeId}}' catchtap='handleTap'>
+				{{item.name}}
+				<view class="{{item.typeId == currentId ? 'nav_border':''}}"></view>
+			</view>
+		</view>
+	</view>
+	<!-- 任务 -->
+	<view class="Task">
+		<view class="task" wx:for="{{arr}}" wx:key="index" data-title="{{item.title}}" catchtap="details">
+			<image class="task_img" src="{{item.imgUrls}}" />
+			<view class="task_content">
+				<view class="task_title">
+					{{item.title}}
+					<view wx:if="{{private}}">私</view>
+				</view>
+				<view class="task_time">
+					<text>{{item.time.start}} -</text>
+					<text>{{item.time.end}}</text>
+					<text> {{item.time.total}}</text>
+				</view>
+				<view class="task_conditions">
+					<text class="task_condition" wx:for="{{item.condition}}" wx:key="index">{{item}}</text>
+				</view>
+			</view>
+			<view class="task_right" wx:if="{{currentId==1}}">
+				<text class="task_price_txt" catchtap="appeal">申诉</text>
+			</view>
+			<view class="task_right" wx:elif="{{currentId==2}}">
+				<text class="task_price">+500.0</text>
+			</view>
+		</view>
+	</view>
+</view>
+<!-- {{item.process?"进行中":"已结束"}} -->

@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/mytask/index",
+    "pages/pc/index",
+    "pages/search/index",
+    "pages/rmrw/index",
+    "pages/details/index",
+    "pages/taskVoucher/index",
+    "pages/leave/index",
+    "pages/appeal/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "自定义导航栏",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "usingComponents": {
+    "navBar": "pages/navBar/navBar"
+  },
+  "tabBar": {
+    "selectedColor": "#3e3d3d",
+    "color": "#595959",
+    "list": [
+      {
+        "selectedIconPath": "pages/images/selrwdt.png",
+        "iconPath": "pages/images/rwdt.png",
+        "pagePath": "pages/index/index",
+        "text": "任务大厅"
+      },
+      {
+        "selectedIconPath": "pages/images/selmt.png",
+        "iconPath": "pages/images/mt.png",
+        "pagePath": "pages/mytask/index",
+        "text": "我的任务"
+      },
+      {
+        "selectedIconPath": "pages/images/selpc.png",
+        "iconPath": "pages/images/pc.png",
+        "pagePath": "pages/pc/index",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
